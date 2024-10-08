@@ -1,8 +1,5 @@
 package org.delta;
-import org.delta.accounts.BankAccount;
-import org.delta.accounts.BankAccountFactory;
-import org.delta.accounts.MoneyTransferService;
-import org.delta.accounts.PersonIDValidator;
+import org.delta.accounts.*;
 import org.delta.persons.Owner;
 import org.delta.persons.OwnerFactory;
 
@@ -22,21 +19,19 @@ public class App {
     }
 
     private void testBank() {
-        PersonIDValidator personIDValidator = new PersonIDValidator();
-        OwnerFactory ownerFactory = new OwnerFactory(personIDValidator);
-        BankAccountFactory bankAccountFactory = new BankAccountFactory();
+        DIContainer diContainer = new DIContainer();
 
-        Owner owner = ownerFactory.createOwner("Jan", "Navrátil");
-        BankAccount bankAccount = bankAccountFactory.createBankAccount(500, owner, "123");
+        Owner owner = diContainer.getOwnerFactory().createOwner("Jan", "Navrátil", diContainer.getPersonIdGenerator());
+        BankAccount bankAccount = diContainer.getBankAccountFactory().createBankAccount(500, owner, "123");
 
-        Owner owner1 = new Owner("Honza", "Šulc");
-        BankAccount bankAccount1 = new BankAccount("234", 500, owner1);
-
-        MoneyTransferService moneyTransferService = new MoneyTransferService();
+        Owner owner1 = diContainer.getOwnerFactory().createOwner("Honza", "Šulc", diContainer.getPersonIdGenerator());
+        BankAccount bankAccount1 = diContainer.getBankAccountFactory().createBankAccount(500, owner1, diContainer.getBankAccountNumberGenerator());
 
         System.out.println("owner: " + owner.getFullName() );
         System.out.println("account: " + bankAccount.getAccountNumber() + ", balance: " + bankAccount.getBalance());
+        System.out.print(diContainer.getPersonJsonSerializationService().serializerOwner(owner));
 
+        MoneyTransferService moneyTransferService = diContainer.getMoneyTransferService();
         moneyTransferService.addMoneyToBankAccount(bankAccount, 500);
         moneyTransferService.addMoneyToBankAccount(bankAccount, 1000);
         moneyTransferService.getMoneyToBankAccount(bankAccount, 500);

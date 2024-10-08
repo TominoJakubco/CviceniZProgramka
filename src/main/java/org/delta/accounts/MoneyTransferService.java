@@ -2,6 +2,13 @@ package org.delta.accounts;
 
 public class MoneyTransferService {
 
+    private final TransferFeeCalculator transferFeeCalculator;
+
+    public MoneyTransferService(TransferFeeCalculator transferFeeCalculator /*, DetailPrinter accountDetailPrinter*/) {
+        this.transferFeeCalculator = transferFeeCalculator;
+        //this.accountDetailPrinter = accountDetailPrinter;
+    }
+
     private static final double ADD_MONEY_FEE = 10;
     private static final double SECOND_LEVEL_FEE_LIMIT = 500;
 
