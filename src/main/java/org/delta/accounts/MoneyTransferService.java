@@ -1,12 +1,17 @@
 package org.delta.accounts;
 
+import jakarta.inject.Inject;
+import org.delta.print.AccountDetailPrinter;
+
 public class MoneyTransferService {
 
-    private final TransferFeeCalculator transferFeeCalculator;
+    @Inject
+    private TransferFeeCalculator transferFeeCalculator;
 
-    public MoneyTransferService(TransferFeeCalculator transferFeeCalculator /*, DetailPrinter accountDetailPrinter*/) {
-        this.transferFeeCalculator = transferFeeCalculator;
-        //this.accountDetailPrinter = accountDetailPrinter;
+    @Inject
+    private AccountDetailPrinter accountDetailPrinter;
+
+    public MoneyTransferService() {
     }
 
     private static final double ADD_MONEY_FEE = 10;

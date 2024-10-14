@@ -1,37 +1,47 @@
 package org.delta;
+import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import org.delta.accounts.*;
 import org.delta.persons.Owner;
 import org.delta.persons.OwnerFactory;
+import org.delta.persons.PersonIDValidator;
+import org.delta.persons.PersonJsonSerializationService;
 
 import javax.management.ObjectName;
 import java.text.MessageFormat;
 
 public class App {
+    @Inject
+    private OwnerFactory ownerFactory;
+
+    @Inject
+    private BankAccountFactory bankAccountFactory;
+
+    @Inject
+    private AccountNumberGenerator accountNumberGenerator;
+
+    @Inject
+    private PersonJsonSerializationService personJsonSerializationService;
+
+    @Inject
+    private MoneyTransferService moneyTransferService;
+
     public void run() {
         Calc calc = new Calculator();
-
-//        System.out.println(calc.add(1, 2));
-//        System.out.println(calc.sub(2, 1));
-//        System.out.println(calc.mul(2, 3));
-//        System.out.println(calc.div(4,2));
-//        System.out.println(calc.div(4,0));
         testBank();
     }
 
     private void testBank() {
-        DIContainer diContainer = new DIContainer();
+        Owner owner = this.ownerFactory.createOwner("Jan", "Navrátil");
+        BankAccount bankAccount = this.bankAccountFactory.createBankAccount(500, owner, "123");
 
-        Owner owner = diContainer.getOwnerFactory().createOwner("Jan", "Navrátil", diContainer.getPersonIdGenerator());
-        BankAccount bankAccount = diContainer.getBankAccountFactory().createBankAccount(500, owner, "123");
-
-        Owner owner1 = diContainer.getOwnerFactory().createOwner("Honza", "Šulc", diContainer.getPersonIdGenerator());
-        BankAccount bankAccount1 = diContainer.getBankAccountFactory().createBankAccount(500, owner1, diContainer.getBankAccountNumberGenerator());
+        Owner owner1 = this.ownerFactory.createOwner("Honza", "Šulc");
+        BankAccount bankAccount1 = this.bankAccountFactory.createBankAccount(500, owner1, accountNumberGenerator.generateBankAccountNumber());
 
         System.out.println("owner: " + owner.getFullName() );
         System.out.println("account: " + bankAccount.getAccountNumber() + ", balance: " + bankAccount.getBalance());
-        System.out.print(diContainer.getPersonJsonSerializationService().serializerOwner(owner));
+        System.out.print(this.personJsonSerializationService.serializerOwner(owner));
 
-        MoneyTransferService moneyTransferService = diContainer.getMoneyTransferService();
         moneyTransferService.addMoneyToBankAccount(bankAccount, 500);
         moneyTransferService.addMoneyToBankAccount(bankAccount, 1000);
         moneyTransferService.getMoneyToBankAccount(bankAccount, 500);
