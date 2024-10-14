@@ -16,6 +16,10 @@ public class BankAccount {
         this.balance = balance;
         this.owner = owner;
 
+
+    }
+
+    public void init() {
         BankCard card = bankCardFactory.CreateCard();
         BankCard card2 = bankCardFactory.CreateCard("1234");
     }
