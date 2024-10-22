@@ -1,10 +1,13 @@
 package org.delta.accounts;
 
 import jakarta.inject.Inject;
+import org.delta.accounts.Card.BankCard;
 import org.delta.persons.Owner;
 
 import java.util.HashMap;
 import java.util.Map;
+
+
 
 public class BankAccount {
     private String accountNumber;
@@ -37,13 +40,10 @@ public class BankAccount {
 
     public Map<String, BankCard> getBankCardsMap() {
         return bankCardsMap;
+
     }
 
     public void setBalance(double balance) {
         this.balance = balance;
-    }
-
-    public BankCard getCard() {
-
     }
 }

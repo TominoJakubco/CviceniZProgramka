@@ -1,4 +1,4 @@
-package org.delta.accounts;
+package org.delta.accounts.Card;
 
 import java.util.Random;
 

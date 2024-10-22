@@ -1,6 +1,9 @@
 package org.delta;
 import jakarta.inject.Inject;
 import org.delta.accounts.*;
+import org.delta.accounts.Card.BankCard;
+import org.delta.accounts.Card.BankCardFactory;
+import org.delta.accounts.Card.GlobalCardStorage;
 import org.delta.persons.Owner;
 import org.delta.persons.OwnerFactory;
 import org.delta.persons.PersonJsonSerializationService;
@@ -42,7 +45,7 @@ public class App {
         BankAccount bankAccount1 = this.bankAccountFacade.createBankAccount(500, owner, true);
         BankAccount bankAccount2 = this.bankAccountFacade.createStudentBankAccount(500, owner, true);
 
-        bankAccountFacade.addBankCard(bankAccount1);
+        BankCard card = bankAccountFacade.addBankCard(bankAccount1);
 
         System.out.println("owner: " + owner.getFullName() );
         System.out.println("account: " + bankAccount.getAccountNumber() + ", balance: " + bankAccount.getBalance());
@@ -56,8 +59,15 @@ public class App {
 
 
 
-        atmService.insertMoney(, 20000);
-        atmService.withdrawMoney(, 100);
+        atmService.insertMoney(card, card.getPin(), 20000);
+        atmService.withdrawMoney(card, card.getPin(), 100);
+        System.out.println(card.getPin());
+        atmService.changePin(card, card.getPin(), "1234");
+        System.out.println(card.getPin());
+
+        System.out.println();
+
+        BankAccount bankAccount3 = this.bankAccountFacade.createSavingBankAccount(100000, owner, true);
 
     }
 }

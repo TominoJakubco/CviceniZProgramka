@@ -1,8 +1,10 @@
 package org.delta.accounts;
 
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 import org.delta.print.AccountDetailPrinter;
 
+@Singleton
 public class MoneyTransferService {
 
     @Inject
