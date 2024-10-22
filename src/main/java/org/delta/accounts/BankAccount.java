@@ -43,4 +43,7 @@ public class BankAccount {
         this.balance = balance;
     }
 
+    public BankCard getCard() {
+
+    }
 }

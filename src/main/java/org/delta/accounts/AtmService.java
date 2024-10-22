@@ -15,12 +15,12 @@ public class AtmService {
         return account;
     }
 
-    public void withdrawMoney(BankCard card, double amount) {
+    public void withdrawMoney(BankCard card, String pin,double amount) {
         BankAccount account = getCardAccount(card);
         moneyTransferService.getMoneyFromBankAccount(account, amount);
     }
 
-    public void insertMoney(BankCard card, double amount) {
+    public void insertMoney(BankCard card, String pin, double amount) {
         BankAccount account = getCardAccount(card);
         moneyTransferService.addMoneyToBankAccount(account, amount);
     }
