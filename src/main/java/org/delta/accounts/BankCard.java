@@ -8,4 +8,12 @@ public class BankCard {
         this.cardNumber = cardNumber;
         this.pin = pin;
     }
+
+    public String getCardNumber() {
+        return cardNumber;
+    }
+
+    public void setPin(String pin) {
+        this.pin = pin;
+    }
 }

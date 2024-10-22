@@ -27,15 +27,14 @@ public class MoneyTransferService {
         this.printTransferDetails(account);
     }
 
-    public void getMoneyToBankAccount(BankAccount account, double amount){
+    public void getMoneyFromBankAccount(BankAccount account, double amount){
         double currentBalance = account.getBalance();
         account.setBalance(currentBalance - amount);
-
-        this.printTransferDetails(account);
+        accountDetailPrinter.printDetail(account);
     }
 
     public void printTransferDetails(BankAccount account){
-        System.out.println("account: " + account.getAccountNumber() + ", balance: " + account.getBalance());
+        accountDetailPrinter.printDetail(account);
     }
 
     public void sendMoneyToBankAccount(BankAccount reciever, BankAccount sender, double amount) {

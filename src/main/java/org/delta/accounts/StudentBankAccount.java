@@ -1,5 +1,6 @@
 package org.delta.accounts;
 
+import jakarta.inject.Inject;
 import org.delta.persons.Owner;
 
 public class StudentBankAccount extends BankAccount {

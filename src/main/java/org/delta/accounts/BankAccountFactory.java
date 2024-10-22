@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import org.delta.persons.Owner;
 
 public class BankAccountFactory {
+
     @Inject
     private AccountNumberGenerator accountNumberGenerator;
 

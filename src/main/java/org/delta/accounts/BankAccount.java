@@ -3,25 +3,24 @@ package org.delta.accounts;
 import jakarta.inject.Inject;
 import org.delta.persons.Owner;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class BankAccount {
     private String accountNumber;
     private double balance;
     private Owner owner;
 
-    @Inject
-    private BankCardFactory bankCardFactory;
+    private Map<String, BankCard> bankCardsMap = new HashMap<>();
 
     public BankAccount(String accountNumber, double balance, Owner owner) {
         this.accountNumber = accountNumber;
         this.balance = balance;
         this.owner = owner;
-
-
     }
 
-    public void init() {
-        BankCard card = bankCardFactory.CreateCard();
-        BankCard card2 = bankCardFactory.CreateCard("1234");
+    public void assignBankCard(BankCard bankCard){
+        bankCardsMap.put(bankCard.getCardNumber(), bankCard);
     }
 
     public String getAccountNumber() {
@@ -36,7 +35,12 @@ public class BankAccount {
         return owner;
     }
 
+    public Map<String, BankCard> getBankCardsMap() {
+        return bankCardsMap;
+    }
+
     public void setBalance(double balance) {
         this.balance = balance;
     }
+
 }
