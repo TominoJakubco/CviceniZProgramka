@@ -17,15 +17,12 @@ public class InterestingService {
 
     private double SavingAccountInterest = 4.2;
 
-    public void addInterestToAccount(BankAccount account) {
-        double interest;
+    public void addInterestToAccounts() {
         for(BankAccount acc: globalBankAccountStorage.bankAccounts) {
             if (acc instanceof SavingBankAccount) {
-                interest = interestingCalculator.CalculateIterest(acc.getBalance(), SavingAccountInterest);
-            } else {
-                interest = 0;
+                double interest = interestingCalculator.CalculateIterest(acc.getBalance(), SavingAccountInterest);
+                moneyTransferService.addInterestMoneyToBankAccount(acc, interest);
             }
-            moneyTransferService.addMoneyToBankAccount(account, interest);
         }
     }
 }

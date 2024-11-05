@@ -74,7 +74,6 @@ public class BankAccountFacade {
             globalCardStorage.BankCards.put(bankCard.getCardNumber(), account);
         }
         globalBankAccountStorage.bankAccounts.add(account);
-        interestingService.addInterestToAccount(account);
 
         return account;
     }

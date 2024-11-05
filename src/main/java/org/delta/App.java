@@ -34,6 +34,9 @@ public class App {
     @Inject
     private AtmService atmService;
 
+    @Inject
+    private InterestingService interestingService;
+
     public void run() {
         Calc calc = new Calculator();
         testBank();
@@ -44,6 +47,7 @@ public class App {
         BankAccount bankAccount = this.bankAccountFacade.createBankAccount(500, owner, true, "123");
         BankAccount bankAccount1 = this.bankAccountFacade.createBankAccount(500, owner, true);
         BankAccount bankAccount2 = this.bankAccountFacade.createStudentBankAccount(500, owner, true);
+        BankAccount bankAccount3 = this.bankAccountFacade.createSavingBankAccount(2000, owner, true);
 
         BankCard card = bankAccountFacade.addBankCard(bankAccount1);
 
@@ -67,7 +71,6 @@ public class App {
 
         System.out.println();
 
-        BankAccount bankAccount3 = this.bankAccountFacade.createSavingBankAccount(100000, owner, true);
-
+        interestingService.addInterestToAccounts();
     }
 }

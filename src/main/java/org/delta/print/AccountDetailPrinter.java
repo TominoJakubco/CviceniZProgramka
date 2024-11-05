@@ -1,7 +1,7 @@
 package org.delta.print;
 
 import org.delta.accounts.BankAccount;
-//import org.delta.accounts.SavingBankAccount;
+import org.delta.accounts.SavingBankAccount;
 import org.delta.accounts.StudentBankAccount;
 
 public class AccountDetailPrinter implements DetailPrinter {
@@ -19,9 +19,9 @@ public class AccountDetailPrinter implements DetailPrinter {
             return "Student ";
         }
 
-        /*if (account instanceof SavingBankAccount) {
+        if (account instanceof SavingBankAccount) {
             return "Saving ";
-        }*/
+        }
 
         return "";
     }

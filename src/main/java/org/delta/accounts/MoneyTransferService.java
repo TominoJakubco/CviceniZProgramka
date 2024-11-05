@@ -27,6 +27,14 @@ public class MoneyTransferService {
         else
             account.setBalance(currentBalance + amount - ADD_MONEY_FEE);
         this.printTransferDetails(account);
+
+    }
+
+    public void addInterestMoneyToBankAccount(BankAccount account, double amount){
+        double currentBalance = account.getBalance();
+        currentBalance += amount;
+        account.setBalance(currentBalance);
+        this.printTransferDetails(account);
     }
 
     public void getMoneyFromBankAccount(BankAccount account, double amount){
