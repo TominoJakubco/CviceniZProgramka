@@ -37,6 +37,9 @@ public class App {
     @Inject
     private InterestingService interestingService;
 
+    @Inject
+    private InvestmentService investmentService;
+
     public void run() {
         Calc calc = new Calculator();
         testBank();
@@ -48,6 +51,8 @@ public class App {
         BankAccount bankAccount1 = this.bankAccountFacade.createBankAccount(500, owner, true);
         BankAccount bankAccount2 = this.bankAccountFacade.createStudentBankAccount(500, owner, true);
         BankAccount bankAccount3 = this.bankAccountFacade.createSavingBankAccount(2000, owner, true);
+        BankAccount bankAccount4 = this.bankAccountFacade.createInvestmentBankAccount(1000, owner, true);
+
 
         BankCard card = bankAccountFacade.addBankCard(bankAccount1);
 
@@ -55,22 +60,33 @@ public class App {
         System.out.println("account: " + bankAccount.getAccountNumber() + ", balance: " + bankAccount.getBalance());
         System.out.print(this.personJsonSerializationService.serializerOwner(owner));
 
+
+        System.out.println("**Money Transfer Test**");
         moneyTransferService.addMoneyToBankAccount(bankAccount, 500);
         moneyTransferService.addMoneyToBankAccount(bankAccount, 1000);
         moneyTransferService.getMoneyFromBankAccount(bankAccount, 500);
         moneyTransferService.sendMoneyToBankAccount(bankAccount1, bankAccount, 100);
         moneyTransferService.sendMoneyToBankAccount(bankAccount1, bankAccount, -100);
+        System.out.println();
 
-
-
+        System.out.println("**ATM Service Test**");
         atmService.insertMoney(card, card.getPin(), 20000);
         atmService.withdrawMoney(card, card.getPin(), 100);
         System.out.println(card.getPin());
         atmService.changePin(card, card.getPin(), "1234");
         System.out.println(card.getPin());
-
         System.out.println();
 
+        System.out.println("**Interest Service Test**");
         interestingService.addInterestToAccounts();
+        System.out.println();
+
+        System.out.println("**TermAccount Test**");
+        investmentService.addInvestmentToAccount(bankAccount4, 0, new Investment("Apple", 40));
+        investmentService.addInvestmentToAccount(bankAccount4, 1, new Investment("Microsoft", 40));
+        investmentService.addInvestmentToAccount(bankAccount4, 2, new Investment("Meta", 20));
+        investmentService.addInvestmentToAccount(bankAccount4, 3, new Investment("Tominova Supr Čupr Firma", 10));
+        investmentService.addInvestmentProfitToBankAccounts();
+
     }
 }

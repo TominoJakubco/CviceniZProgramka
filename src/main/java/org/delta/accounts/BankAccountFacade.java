@@ -23,9 +23,6 @@ public class BankAccountFacade {
     @Inject
     private BankAccountNumberGenerator bankAccountNumberGenerator;
 
-    @Inject
-    private InterestingService interestingService;
-
     public BankAccount createBankAccount(double balance, Owner owner, boolean withCard, String bankAccountNumber) {
         BankAccount account = this.bankAccountFactory.createBankAccount(balance, owner, bankAccountNumber);
         if(withCard)
@@ -67,6 +64,19 @@ public class BankAccountFacade {
 
     public BankAccount createSavingBankAccount(double balance, Owner owner, boolean withCard) {
         BankAccount account = this.bankAccountFactory.createSavingBankAccount(balance, owner);
+        if(withCard)
+        {
+            BankCard bankCard = bankCardFactory.CreateCard(account);
+            account.assignBankCard(bankCard);
+            globalCardStorage.BankCards.put(bankCard.getCardNumber(), account);
+        }
+        globalBankAccountStorage.bankAccounts.add(account);
+
+        return account;
+    }
+
+    public BankAccount createInvestmentBankAccount(double balance, Owner owner, boolean withCard) {
+        BankAccount account = this.bankAccountFactory.createInvestmentBankAccount(balance, owner);
         if(withCard)
         {
             BankCard bankCard = bankCardFactory.CreateCard(account);

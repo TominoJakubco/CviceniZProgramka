@@ -18,11 +18,6 @@ public class BankAccountFactory {
         return new BankAccount(accountNumber, balance, owner);
     }
 
-    public BankAccount createBankAccount(double balance, Owner owner) {
-        String accountNumber = bankAccountNumberGenerator.generateBankAccountNumber();
-        return new BankAccount(accountNumber, balance, owner);
-    }
-
     public BankAccount createSlovakianBankAccount(double balance, Owner owner) {
         String accountNumber = slovakiaBankAccountNumberGenerator.generateBankAccountNumber();
         return new BankAccount(accountNumber, balance, owner);
@@ -36,5 +31,10 @@ public class BankAccountFactory {
     public SavingBankAccount createSavingBankAccount(double balance, Owner owner) {
         String accountNumber = bankAccountNumberGenerator.generateBankAccountNumber();
         return new SavingBankAccount(accountNumber, balance, owner);
+    }
+
+    public InvestmentBankAccount createInvestmentBankAccount(double balance, Owner owner) {
+        String accountNumber = bankAccountNumberGenerator.generateBankAccountNumber();
+        return new InvestmentBankAccount(accountNumber, balance, owner);
     }
 }
