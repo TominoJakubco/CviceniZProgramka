@@ -1,9 +1,10 @@
-package org.delta.accounts;
+package org.delta.accounts.saving;
 
 import jakarta.inject.Inject;
+import org.delta.accounts.BankAccount;
 import org.delta.persons.Owner;
 
-public class SavingBankAccount extends BankAccount{
+public class SavingBankAccount extends BankAccount {
 
     @Inject
     private InterestingService interestingService;

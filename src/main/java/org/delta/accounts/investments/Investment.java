@@ -1,9 +1,11 @@
-package org.delta.accounts;
+package org.delta.accounts.investments;
+
+import java.util.Random;
 
 public class Investment {
     private String name;
     private double percetage;
-    private double growthPercentage;
+    Random rnd = new Random();
 
     public Investment(String name, double percetage) {
         this.name = name;
@@ -22,7 +24,8 @@ public class Investment {
         this.percetage = percetage;
     }
 
-    public void setGrowthPercentage(double growthPercentage) {
-        this.growthPercentage = growthPercentage;
+    public double getGrowth() {
+        //return rnd.nextInt(100);
+        return 1;
     }
 }

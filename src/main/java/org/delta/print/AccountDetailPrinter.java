@@ -1,7 +1,7 @@
 package org.delta.print;
 
 import org.delta.accounts.BankAccount;
-import org.delta.accounts.SavingBankAccount;
+import org.delta.accounts.saving.SavingBankAccount;
 import org.delta.accounts.StudentBankAccount;
 
 public class AccountDetailPrinter implements DetailPrinter {

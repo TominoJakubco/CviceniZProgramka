@@ -1,10 +1,11 @@
-package org.delta.accounts;
+package org.delta.accounts.investments;
 import jakarta.inject.Inject;
+import org.delta.accounts.BankAccount;
 import org.delta.persons.Owner;
 
 import java.util.*;
 
-public class InvestmentBankAccount extends BankAccount{
+public class InvestmentBankAccount extends BankAccount {
 
     @Inject
     private InvestmentCalculator investmentCalculator;

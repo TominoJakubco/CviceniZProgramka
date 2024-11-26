@@ -1,4 +1,4 @@
-package org.delta.accounts;
+package org.delta.accounts.saving;
 
 public class InterestingCalculator {
     public double CalculateIterest(double balance, double interestRate) {

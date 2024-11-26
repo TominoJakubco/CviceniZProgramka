@@ -1,7 +1,10 @@
-package org.delta.accounts;
+package org.delta.accounts.saving;
 
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
+import org.delta.accounts.BankAccount;
+import org.delta.accounts.GlobalBankAccountStorage;
+import org.delta.accounts.MoneyTransferService;
 
 @Singleton
 public class InterestingService {
