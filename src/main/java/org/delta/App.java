@@ -11,14 +11,9 @@ import org.delta.persons.Owner;
 import org.delta.persons.OwnerFactory;
 import org.delta.persons.PersonJsonSerializationService;
 import org.delta.print.AccountDetailPrinter;
+import org.delta.serialization.BankJsonDataFacade;
 
 public class App {
-    @Inject
-    private GlobalCardStorage globalCardStorage;
-
-    @Inject
-    private AccountDetailPrinter accountDetailPrinter;
-
     @Inject
     private OwnerFactory ownerFactory;
 
@@ -27,9 +22,6 @@ public class App {
 
     @Inject
     private MoneyTransferService moneyTransferService;
-
-    @Inject
-    private BankCardFactory bankCardFactory;
 
     @Inject
     private BankAccountFacade bankAccountFacade;
@@ -43,18 +35,21 @@ public class App {
     @Inject
     private InvestmentService investmentService;
 
+    @Inject
+    private BankJsonDataFacade bankJsonDataFacade;
+
     public void run() {
         Calc calc = new Calculator();
         testBank();
     }
 
     private void testBank() {
-        Owner owner = this.ownerFactory.createOwner("Jan", "Navrátil");
+        Owner owner = this.ownerFactory.createOwner("Jan", "Novak");
         BankAccount bankAccount = this.bankAccountFacade.createBankAccount(500, owner, true, "123");
         BankAccount bankAccount1 = this.bankAccountFacade.createBankAccount(500, owner, true);
         BankAccount bankAccount2 = this.bankAccountFacade.createStudentBankAccount(500, owner, true);
         BankAccount bankAccount3 = this.bankAccountFacade.createSavingBankAccount(2000, owner, true);
-        BankAccount bankAccount4 = this.bankAccountFacade.createInvestmentBankAccount(1000, owner, true);
+        //BankAccount bankAccount4 = this.bankAccountFacade.createInvestmentBankAccount(1000, owner, true);
 
 
         BankCard card = bankAccountFacade.addBankCard(bankAccount1);
@@ -85,11 +80,15 @@ public class App {
         System.out.println();
 
         System.out.println("**TermAccount Test**");
-        investmentService.addInvestmentToAccount(bankAccount4, 0, new Investment("Apple", 40));
-        investmentService.addInvestmentToAccount(bankAccount4, 1, new Investment("Microsoft", 40));
-        investmentService.addInvestmentToAccount(bankAccount4, 2, new Investment("Meta", 20));
-        investmentService.addInvestmentToAccount(bankAccount4, 3, new Investment("Tominova Supr Čupr Firma", 10));
+//        investmentService.addInvestmentToAccount(bankAccount4, 0, new Investment("Apple", 40));
+//        investmentService.addInvestmentToAccount(bankAccount4, 1, new Investment("Microsoft", 40));
+//        investmentService.addInvestmentToAccount(bankAccount4, 2, new Investment("Meta", 20));
+//        investmentService.addInvestmentToAccount(bankAccount4, 3, new Investment("Tominova Supr Čupr Firma", 10));
         investmentService.addInvestmentProfitToBankAccounts();
+
+
+        System.out.println("**BankJsonData Test**");
+        bankJsonDataFacade.createBankJsonDataFromGlobalStorages();
 
     }
 }

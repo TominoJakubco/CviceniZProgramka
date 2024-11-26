@@ -7,6 +7,7 @@ public class PersonGsonSerializationService {
     {
         Gson gson = new Gson();
 
+
         return gson.toJson(owner, Owner.class);
     }
 }

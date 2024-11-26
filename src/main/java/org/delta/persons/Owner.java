@@ -1,5 +1,9 @@
 package org.delta.persons;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serial;
+
 public class Owner {
     private String name;
     private String surname;

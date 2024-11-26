@@ -5,7 +5,7 @@ import org.delta.accounts.BankAccount;
 public class BankCard {
     private String cardNumber;
     private String pin;
-    private BankAccount bankAccount;
+    private transient BankAccount bankAccount;
 
     public BankCard(String cardNumber, String pin, BankAccount bankAccount) {
         this.cardNumber = cardNumber;

@@ -16,7 +16,7 @@ public class Main {
         } catch (ArithmeticException e) {
             System.out.println("ArithmeticalException");
         } catch (Throwable thr) {
-            System.out.println("neco se pokazilo");
+            System.out.println("neco se pokazilo" + thr.getMessage());
             thr.printStackTrace();
         }
     }

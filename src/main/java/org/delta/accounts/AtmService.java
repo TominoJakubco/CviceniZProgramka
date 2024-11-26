@@ -12,10 +12,10 @@ public class AtmService {
     @Inject
     private MoneyTransferService moneyTransferService;
 
-//    public BankAccount getCardAccount(BankCard card) {
-//        BankAccount account = globalCardStorage.BankCards.get(card.getCardNumber());
-//        return account;
-//    }
+    public BankAccount getCardAccount(BankCard card) {
+        BankAccount account = globalCardStorage.BankCards.get(card.getCardNumber());
+        return account;
+    }
 
     public void withdrawMoney(BankCard card, String pin, double amount) {
         if(pin == card.getPin()) {
