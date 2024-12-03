@@ -12,6 +12,7 @@ import org.delta.persons.OwnerFactory;
 import org.delta.persons.PersonJsonSerializationService;
 import org.delta.print.AccountDetailPrinter;
 import org.delta.serialization.BankJsonDataFacade;
+import org.delta.storage.IO;
 
 public class App {
     @Inject
@@ -38,13 +39,24 @@ public class App {
     @Inject
     private BankJsonDataFacade bankJsonDataFacade;
 
+    @Inject
+    private GlobalOwnerStorage globalOwnerStorage;
+
     public void run() {
-        Calc calc = new Calculator();
+        //Calc calc = new Calculator();
+        if(IO.isFileExists("bank_accounts.json")) {
+            bankJsonDataFacade.deserializeBankJsonData();
+            System.out.println(globalOwnerStorage.owners.size());
+        }
+        else
         testBank();
     }
 
     private void testBank() {
         Owner owner = this.ownerFactory.createOwner("Jan", "Novak");
+        Owner owner1 = this.ownerFactory.createOwner("Petr", "Mareš");
+        Owner owner2 = this.ownerFactory.createOwner("Pavel", "Setrmajer");
+        Owner owner3 = this.ownerFactory.createOwner("Lukáš", "Martin");
         BankAccount bankAccount = this.bankAccountFacade.createBankAccount(500, owner, true, "123");
         BankAccount bankAccount1 = this.bankAccountFacade.createBankAccount(500, owner, true);
         BankAccount bankAccount2 = this.bankAccountFacade.createStudentBankAccount(500, owner, true);
@@ -89,6 +101,7 @@ public class App {
 
         System.out.println("**BankJsonData Test**");
         bankJsonDataFacade.createBankJsonDataFromGlobalStorages();
+
 
     }
 }

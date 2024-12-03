@@ -10,16 +10,16 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BankJsonData {
-    private Owner owner;
+    private List<Owner> owners;
     private List<BankAccount> bankAccounts;
 
-    public BankJsonData(Owner owner, List<BankAccount> bankAccounts) {
-        this.owner = owner;
+    public BankJsonData(List<Owner> owners, List<BankAccount> bankAccounts) {
+        this.owners = owners;
         this.bankAccounts = bankAccounts;
     }
 
-    public Owner getOwner() {
-        return this.owner;
+    public List<Owner> getOwners() {
+        return this.owners;
     }
 
     public List<BankAccount> getBankAccounts() {
