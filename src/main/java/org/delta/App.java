@@ -88,7 +88,8 @@ public class App {
 
 
         System.out.println("**BankJsonData Test**");
-        bankJsonDataFacade.createBankJsonDataFromGlobalStorages();
+        //bankJsonDataFacade.createBankJsonDataFromGlobalStorages();
+        bankJsonDataFacade.deserializeBankJsonData();
 
     }
 }

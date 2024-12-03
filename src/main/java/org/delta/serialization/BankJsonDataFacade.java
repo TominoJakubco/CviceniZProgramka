@@ -7,17 +7,20 @@ import org.delta.persons.Owner;
 
 public class BankJsonDataFacade {
     @Inject
-    private GlobalOwnerStorage globalOwnerStorage;
-
-    @Inject
     private BankJsonDataFactory bankJsonDataFactory;
 
     @Inject
     private BankSerializationService bankSerializationService;
 
+    @Inject
+    private BankDeserializationService bankDeserializationService;
+
     public void createBankJsonDataFromGlobalStorages() {
-        for(Owner owner : globalOwnerStorage.owners) {
-            bankSerializationService.runSerialization(bankJsonDataFactory.createBankJsonData(owner));
-        }
+            bankSerializationService.runSerialization(bankJsonDataFactory.createBankJsonData());
+    }
+
+    public void deserializeBankJsonData() {
+        bankDeserializationService.runDeserialization();
     }
 }
+

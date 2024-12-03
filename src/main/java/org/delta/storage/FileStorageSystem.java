@@ -8,5 +8,13 @@ import java.util.List;
 
 @Singleton
 public class FileStorageSystem {
-    List<Gson> idk = new LinkedList<>();
+    private List<String> files = new LinkedList<>();
+
+    public void addToFileSystem(String fileName) {
+        files.add(fileName);
+    }
+
+    public List<String> getFiles() {
+        return files;
+    }
 }
