@@ -15,6 +15,7 @@ public class BankJsonDataFacade {
     @Inject
     private BankDeserializationService bankDeserializationService;
 
+
     public void createBankJsonDataFromGlobalStorages() {
             bankSerializationService.runSerialization(bankJsonDataFactory.createBankJsonData());
     }

@@ -13,6 +13,7 @@ public class BankJsonData {
     private List<Owner> owners;
     private List<BankAccount> bankAccounts;
 
+
     public BankJsonData(List<Owner> owners, List<BankAccount> bankAccounts) {
         this.owners = owners;
         this.bankAccounts = bankAccounts;

@@ -14,6 +14,7 @@ public class BankDeserializationService {
     @Inject
     private GlobalBankAccountStorage globalBankAccountStorage;
 
+
     @Inject
     private GlobalOwnerStorage globalOwnerStorage;
 

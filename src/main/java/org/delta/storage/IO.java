@@ -17,6 +17,7 @@ public class IO {
         Files.write(file, Collections.singleton(content), StandardCharsets.UTF_8);
     }
 
+
     public static String readFile(String fileName) throws IOException {
         Path filePath = Path.of(fileName);
         return Files.readString(filePath);
